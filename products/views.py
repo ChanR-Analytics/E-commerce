@@ -1,15 +1,33 @@
 from django.http import Http404
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from django.shortcuts import render,get_object_or_404
 
 from .models import Product
 
 
 # Create your views here.
-class ProductListView(ListView):
-    queryset = Product.objects.all()
+class ProductFeaturedListView(ListView):
+    #queryset = Product.objects.all()
     template_name = "products/list.html"
+    def get_queryset(self, *args, **kwargs):
+        request=self.request
+        return Product.objects.featured()
 
+
+class ProductFeaturedDetailView(DetailView):
+    queryset = Product.objects.featured()
+    template_name = "products/featured-detail.html"
+    # def get_queryset(self, *args, **kwargs):
+    #     request=self.request
+    #     return Product.objects.featured()
+
+class ProductListView(ListView):
+    template_name = "product/list.html"
+
+
+class Product_detail_Slug_view(DetailView):
+    queryset = Product.objects.all()
+    template_name ="products/detail.html"
 
 
 
