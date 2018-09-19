@@ -1,6 +1,6 @@
 {% load static %}
  <!Doctype html>
-    <html lang="en">
+<html lang="en">
      <head>
      <!-- Required meta tags -->
      <meta charset="utf-8">
@@ -9,17 +9,18 @@
      <!-- Bootstrap CSS -->
 
     <title>Base template</title>
+         {% include 'base/css.html' %}
+         {% block base_head %}{% endblock %}
+
+
   </head>
    <body>
+        {% include 'base/navbar.html' with brand_name='E-commerce' %}
+        {% block content %}{% endblock %}
+        {% include 'base/js.html' %}
 
 
 
 
-        {% block content %} {% endblock %}
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-    </div>
    </body>
   </html>
